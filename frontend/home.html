@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Include this in each page before your main.js -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    confirmPasswordReset,
+    updateProfile,
+    signOut
+  } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+
+  // 🔑 Replace these with your Firebase project config
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.firebaseAuth = auth; // expose globally so main.js can use it
+  window.firebaseFuncs = {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    confirmPasswordReset,
+    updateProfile,
+    signOut
+  };
+</script>
+<script src="js/main.js"></script>
+</head>
+<body>
+
+<div class="phone-container">
+
+    <!-- Status bar -->
+    <div class="status-bar">
+        <span class="time">&nbsp;&nbsp;&nbsp;9:30 PM</span>
+        <div class="status-icons">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full">&nbsp;&nbsp;&nbsp;</i>
+        </div>
+    </div>
+
+    <h2 class="home-title">Welcome 👋</h2>
+
+    <div class="home-box">
+        <p>You are logged in successfully!</p>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+</div>
+
+<script>
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    window.location.href = "index.html";
+});
+</script>
+
+</body>
+</html>
